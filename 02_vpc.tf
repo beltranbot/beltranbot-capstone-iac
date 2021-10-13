@@ -91,6 +91,10 @@ resource "aws_eip" "eip_for_nat_gw" {
 resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.eip_for_nat_gw.id
   subnet_id     = aws_subnet.public_subnet_1.id
+
+  tags = {
+    Name = "${var.TAG_PREFIX}-nat-gw"
+  }
 }
 
 # private route table
